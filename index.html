@@ -5,436 +5,300 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Priyanshu Upadhyay | Portfolio</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Lottie Animation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-
 <style>
-/* -------------------------------------------- */
-/* COLORS + DARK MODE                           */
-/* -------------------------------------------- */
 :root {
-    --bg: #f5f5f5;
-    --text: #222;
-    --card: #fff;
-    --purple: #6A0DAD;
-    --shadow: rgba(0,0,0,0.08);
-}
-
-body.dark {
     --bg: #0d0d0d;
-    --text: #e8e8e8;
-    --card: #1a1a1a;
-    --purple: #bb7fff;
-    --shadow: rgba(255,255,255,0.05);
+    --text: #eaeaea;
+    --card: #161616;
+    --accent: #F7FF3C; /* Fluorescent Yellow */
+    --radius: 14px;
 }
 
 body {
-    margin: 0;
     background: var(--bg);
     color: var(--text);
     font-family: "Inter", sans-serif;
-    transition: 0.3s ease-in-out;
+    margin: 0;
+    display: flex;
 }
 
-/* -------------------------------------------- */
-/* PRELOADER                                    */
-/* -------------------------------------------- */
-#preloader {
-    position: fixed;
-    top:0; left:0;
-    height:100vh; width:100vw;
-    background: var(--bg);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:5000;
-}
-
-/* -------------------------------------------- */
-/* SIDEBAR                                      */
-/* -------------------------------------------- */
+/* ---------------- LEFT SIDEBAR ---------------- */
 #sidebar {
-    position: fixed;
-    left:0; top:0;
-    width:240px;
-    height:100vh;
+    width: 280px;
     background: var(--card);
-    padding:25px 22px;
-    box-shadow: 2px 0 10px var(--shadow);
-    z-index:1000;
+    height: 100vh;
+    padding: 25px;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+    position: fixed;
 }
 
-#sidebar h2 {
-    margin-bottom:25px;
+#profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
-#sidebar a {
-    display:block;
-    margin:15px 0;
-    text-decoration:none;
-    color:var(--text);
-    font-size:1.05rem;
-    font-weight:500;
+#name {
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
-#sidebar a:hover {
-    color: var(--purple);
+#title {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
 }
 
-#darkToggle, #resumeBtnSidebar {
-    margin-top:15px;
-    width:100%;
-    padding:12px;
-    background:var(--purple);
-    border:none;
-    border-radius:8px;
-    color:white;
-    cursor:pointer;
-    font-weight:600;
-    font-size:1rem;
+/* Menu */
+.nav-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 12px 0;
+    color: var(--text);
+    font-size: 1.05rem;
+    cursor: pointer;
 }
 
-/* -------------------------------------------- */
-/* MAIN CONTENT                                  */
-/* -------------------------------------------- */
+.nav-btn:hover {
+    color: var(--accent);
+}
+
+/* Icons Row */
+.icon-row {
+    margin-top: 20px;
+}
+
+.icon-row a {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.icon-row svg {
+    width: 22px;
+    margin-right: 10px;
+    fill: var(--accent);
+}
+
+/* Resume Button */
+.resume-btn {
+    margin-top: 25px;
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-align: center;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ---------------- RIGHT CONTENT ---------------- */
 #content {
-    margin-left:270px;
-    padding:25px;
+    margin-left: 310px;
+    padding: 40px;
+    width: calc(100% - 310px);
 }
 
-/* HERO */
-.hero {
-    background:var(--card);
-    padding:45px;
-    text-align:center;
-    border-radius:12px;
-    box-shadow:0 4px 10px var(--shadow);
+/* Hide all sections by default */
+.section {
+    display: none;
 }
 
-.hero img {
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid var(--purple);
+/* Active section */
+.active {
+    display: block;
 }
 
-/* -------------------------------------------- */
-/* SECTION HEADERS                               */
-/* -------------------------------------------- */
-section h3 {
-    border-left:6px solid var(--purple);
-    padding-left:12px;
-    font-size:1.8rem;
-    margin-bottom:20px;
+/* Section Title */
+.section h2 {
+    font-size: 2rem;
+    border-left: 5px solid var(--accent);
+    padding-left: 14px;
+    margin-bottom: 20px;
 }
 
-/* -------------------------------------------- */
-/* KPI COUNTERS                                  */
-/* -------------------------------------------- */
-.kpi-container {
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.kpi {
-    flex:1;
-    min-width:220px;
-    background:var(--card);
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 4px 10px var(--shadow);
-}
-
-.kpi span {
-    font-size:2.4rem;
-    color:var(--purple);
-    font-weight:700;
-}
-
-/* -------------------------------------------- */
-/* SKILLS GRID                                   */
-/* -------------------------------------------- */
-.skills-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-    gap:20px;
+/* ---------------- SKILL ICONS ---------------- */
+.skill-grid {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
 }
 
 .skill {
-    background:var(--card);
-    padding:18px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:600;
-    box-shadow:0 4px 10px var(--shadow);
+    background: var(--card);
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* -------------------------------------------- */
-/* PROJECT CARDS                                 */
-/* -------------------------------------------- */
-.projects {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
-    gap:25px;
+/* ---------------- TIMELINE ---------------- */
+.timeline {
+    border-left: 3px solid var(--accent);
+    padding-left: 25px;
 }
 
-.project-card {
-    background:var(--card);
-    padding:15px;
-    border-radius:12px;
-    box-shadow:0 4px 12px var(--shadow);
+.entry {
+    margin-bottom: 30px;
 }
 
-.project-card img {
-    width:100%;
-    border-radius:10px;
-    margin-bottom:12px;
+.entry h3 {
+    color: var(--accent);
+    margin-bottom: 8px;
 }
 
-.tag {
-    background:var(--purple);
-    color:white;
-    padding:5px 10px;
-    border-radius:6px;
-    font-size:0.8rem;
-    display:inline-block;
-    margin-bottom:8px;
+.entry span {
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
-/* -------------------------------------------- */
-/* TESTIMONIALS                                  */
-/* -------------------------------------------- */
-.testimonials {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    gap:20px;
-}
-
-.testimonial {
-    background:var(--card);
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 10px var(--shadow);
-}
-
-.testimonial h4 {
-    color:var(--purple);
-    margin-bottom:10px;
-}
-
-/* -------------------------------------------- */
-/* ANIMATION                                      */
-/* -------------------------------------------- */
-.animate {
-    opacity:0;
-    transform:translateY(30px);
-    transition:0.8s ease-out;
-}
-.animate.show {
-    opacity:1;
-    transform:translateY(0);
+.entry p {
+    opacity: 0.9;
+    margin-top: 10px;
 }
 </style>
+
+<script>
+// Page switching logic
+function showPage(id) {
+    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+</script>
 </head>
 
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-    <div id="lottieLoader" style="width:180px; height:180px;"></div>
-</div>
-
-<script>
-lottie.loadAnimation({
-    container: document.getElementById('lottieLoader'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets9.lottiefiles.com/packages/lf20_q5pk6p1k.json'
-});
-</script>
-
-<!-- SIDEBAR -->
+<!-- LEFT SIDEBAR -->
 <div id="sidebar">
-    <h2>Priyanshu</h2>
+    extracted_images/image_0_0.png" id="profile-pic">
 
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
+    <div id="name">Priyanshu Upadhyay</div>
+    <div id="title">Digital Transformation • Systems Specialist • Data Engineering</div>
 
-    <button id="darkToggle">Dark Mode</button>
+    <button class="nav-btn" onclick="showPage('about')">About</button>
+    <button class="nav-btn" onclick="showPage('skills')">Skills</button>
+    <button class="nav-btn" onclick="showPage('experience')">Experience</button>
+    <button class="nav-btn" onclick="showPage('projects')">Projects</button>
+    <button class="nav-btn" onclick="showPage('contact')">Contact</button>
 
-    <a id="resumeBtnSidebar" href="Priyanshu_CV.pdf" download>Download Resume</a>
+    <div class="icon-row">
+        linkedin.com/in/priyanshuupadhyay</a>
+        github.com/priyanshu190920</a>
+        mailto:priyanshu.electrical@gmail.com">Email</a>
+    </div>
+
+    Priyanshu_CV.pdf" class="resume-btn">Download Resume</a>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- RIGHT MAIN CONTENT -->
 <div id="content">
 
-<!-- HERO -->
-<div class="hero animate">
-    <img src="extracted_images/image_0_0.png" alt="Profile Photo">
-    <h1>Priyanshu Upadhyay</h1>
-    <p class="subtitle">Digital Transformation • Systems Specialist • Data Engineering • Project Controls</p>
-</div>
-
-<!-- KPIs -->
-<section class="animate">
-    <h3>Key Highlights</h3>
-    <div class="kpi-container">
-        <div class="kpi"><span id="k1">0</span>Years of Experience</div>
-        <div class="kpi"><span id="k2">0</span>Dashboards Built</div>
-        <div class="kpi"><span id="k3">0</span>Automated ETL Pipelines</div>
-        <div class="kpi"><span id="k4">0</span>Global Projects Delivered</div>
-    </div>
-</section>
-
 <!-- ABOUT -->
-<section id="about" class="animate">
-    <h3>About Me</h3>
-    <div class="about-box">
-        Experienced Systems Specialist and Data Analyst with expertise in Microsoft Fabric, ETL, Power BI, SQL, Primavera P6, Jira, ERP Systems and enterprise digital transformation.
-    </div>
-</section>
+<div id="about" class="section active">
+    <h2>About Me</h2>
+    <p>
+        Systems & Data Specialist with 14+ years of experience in large‑scale digital transformation,
+        engineering systems, analytics, reporting automation, and enterprise data solutions.
+    </p>
+</div>
 
 <!-- SKILLS -->
-<section id="skills" class="animate">
-    <h3>Skills</h3>
-    <div class="skills-grid">
-        <div class="skill">Microsoft Fabric</div>
-        <div class="skill">Power BI</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Python</div>
-        <div class="skill">ETL Pipelines</div>
-        <div class="skill">Azure</div>
-        <div class="skill">DAX</div>
-        <div class="skill">Primavera</div>
-        <div class="skill">Jira</div>
-        <div class="skill">Reporting Automation</div>
-    </div>
-</section>
+<div id="skills" class="section">
+    <h2>Skills</h2>
 
-<!-- PROJECTS -->
-<section id="projects" class="animate">
-    <h3>Projects</h3>
-    <div class="projects">
+    <div class="skill-grid">
 
-        <div class="project-card animate">
-            <span class="tag">Fabric</span>
-            <img src="extracted_images/image_3_2.jpg">
-            <h4>End‑to‑End Fabric Architecture</h4>
-            <p>Enterprise ETL pipelines using Dataflows Gen2, Lakehouse, Notebooks, SQL Endpoint.</p>
+        <div class="skill">
+            Power BI
+            <span>Power BI</span>
         </div>
 
-        <div class="project-card animate">
-            <span class="tag">Power BI</span>
-            <img src="extracted_images/image_8_7.jpg">
-            <h4>Project Progress Dashboard</h4>
-            <p>Weekly insights for engineering, planning, cost and construction teams.</p>
+        <div class="skill">
+            Fabric
+            <span>Microsoft Fabric</span>
         </div>
 
-        <div class="project-card animate">
-            <span class="tag">Engineering Analytics</span>
-            <img src="extracted_images/image_12_10.jpg">
-            <h4>Contractor Detail Report</h4>
-            <p>Progress, FTE utilization, variation, and milestone tracking.</p>
+        <div class="skill">
+            SQL
+            <span>SQL / T-SQL</span>
         </div>
 
-        <div class="project-card animate">
-            <span class="tag">Forecasting</span>
-            <img src="extracted_images/image_15_12.jpg">
-            <h4>Trend & Forecast Analysis</h4>
-            <p>4‑year cumulative & incremental forecasting.</p>
+        <div class="skill">
+            Python
+            <span>Python</span>
         </div>
 
-        <div class="project-card animate">
-            <span class="tag">Timeline</span>
-            <img src="extracted_images/image_20_15.jpg">
-            <h4>Project Completion Timeline</h4>
-            <p>Progress, readiness, and commissioning alignment.</p>
+        <div class="skill">
+            Excel
+            <span>Advanced Excel</span>
         </div>
 
-        <div class="project-card animate">
-            <span class="tag">Deviation</span>
-            <img src="extracted_images/image_22_16.jpg">
-            <h4>Schedule Deviation Dashboard</h4>
-            <p>Deviation trends, risk detection, and early warnings.</p>
+        <div class="skill">
+            Azure
+            <span>Azure Cloud</span>
         </div>
 
     </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="animate">
-    <h3>Testimonials</h3>
-    
-    <div class="testimonials">
-        <div class="testimonial">
-            <h4>Senior Project Manager – Fluor</h4>
-            <p>"Priyanshu’s dashboards significantly improved project visibility and decision‑making."</p>
-        </div>
-
-        <div class="testimonial">
-            <h4>Technical Director – IDOM</h4>
-            <p>"He transformed complex data into clear insights used by senior leadership."</p>
-        </div>
-
-        <div class="testimonial">
-            <h4>Digital Lead – Saipem JV</h4>
-            <p>"Integrated 20+ enterprise systems — one of the most advanced digital transformations."</p>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="animate">
-    <h3>Contact</h3>
-    <p>Email: priyanshu.electrical@gmail.com</p>
-    <p>Location: Luleå, Sweden</p>
-    <p>LinkedIn: linkedin.com/in/priyanshuupadhyay</p>
-</section>
-
-<footer>
-    © 2026 Priyanshu Upadhyay — All Rights Reserved.
-</footer>
-
 </div>
 
-<script>
-// DARK MODE
-document.getElementById("darkToggle").onclick = () =>
-    document.body.classList.toggle("dark");
+<!-- EXPERIENCE -->
+<div id="experience" class="section">
+    <h2>Experience</h2>
 
-// KPI COUNTERS
-function counter(id, target) {
-    let num = 0;
-    const interval = setInterval(() => {
-        num++;
-        document.getElementById(id).innerText = num;
-        if (num >= target) clearInterval(interval);
-    }, 30);
-}
-counter("k1", 14);
-counter("k2", 50);
-counter("k3", 20);
-counter("k4", 12);
+    <div class="timeline">
 
-// Scroll Animations
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("show"); });
-});
-document.querySelectorAll(".animate").forEach(el => obs.observe(el));
+        <div class="entry">
+            <h3>Report Leader – IDOM (Sweden)</h3>
+            <span>Feb 2026 – Present</span>
+            <p>
+                Leading reporting for a €4.5B megaproject, building automated Fabric pipelines, Power BI dashboards, and engineering analytics systems.
+            </p>
+        </div>
 
-// Preloader
-window.onload = () => document.getElementById("preloader").style.display = "none";
-</script>
+        <div class="entry">
+            <h3>Project Controls Specialist – Fluor (Denmark)</h3>
+            <span>May 2024 – Jan 2026</span>
+            <p>
+                Developed 20+ dashboards, automated reporting, improved schedule visibility by 40%, and trained 200+ engineers.
+            </p>
+        </div>
 
+        <div class="entry">
+            <h3>Technical Manager – Teknobuilt (Italy)</h3>
+            <span>Apr 2019 – Oct 2023</span>
+            <p>
+                Integrated 20+ enterprise systems, built analytics for EPC projects, drove digital transformation programs.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="section">
+    <h2>Projects</h2>
+    <p>Project section coming next…</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: priyanshu.electrical@gmail.com</p>
+    <p>Location: Luleå, Sweden</p>
+</div>
+
+</div>
 </body>
 </html>
