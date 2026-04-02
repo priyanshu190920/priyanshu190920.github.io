@@ -12,12 +12,17 @@
     --bg-color: #111111;
     --card-bg: #1e1e1f;
     --border-color: #383838;
-    --accent: #ffdb70; /* Target Image Yellow */
+    --accent: #ffdb70; 
     --text-primary: #fafafa;
     --text-secondary: #d6d6d6;
     --text-muted: #a6a6a6;
     --radius: 20px;
     --font-main: "Inter", "Segoe UI", sans-serif;
+    --modal-bg: #1c1c1c;
+    --tag-blue: #cfe2ff;
+    --tag-blue-text: #084298;
+    --btn-linkedin: #0a66c2;
+    --btn-github: #2ea043;
 }
 
 /* GLOBAL */
@@ -531,6 +536,7 @@ body {
     font-size: 0.75rem;
     text-decoration: none;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 .btn-outline:hover {
@@ -539,10 +545,242 @@ body {
 }
 
 .tool-icon {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
+/* ========================================= */
+/* MODAL (POPUP) CSS                         */
+/* ========================================= */
+
+#project-modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border-color);
+    background: #222;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Modal Left Col */
+.modal-primary-tag {
+    background: var(--tag-blue);
+    color: var(--tag-blue-text);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.modal-domain {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.modal-domain span {
+    color: #00d26a; /* Green highlight from reference */
+    font-weight: 600;
+}
+
+.modal-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #000;
+    padding: 5px 15px 5px 5px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+.action-btn .icon-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.action-btn.linkedin .icon-circle { background: var(--btn-linkedin); }
+.action-btn.github .icon-circle { background: var(--btn-github); }
+
+.action-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+}
+
+.other-tools-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tool-badge {
+    background: #2a2a2c;
+    color: var(--tag-blue);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Modal Right Col */
+.modal-image-container {
+    background: #2a2a2c;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-image {
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.modal-image-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+    padding: 0 10px;
+}
+
+/* Modal Bottom Section */
+.modal-details-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+}
+
+.modal-details-content {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.modal-details-content ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-details-content li {
+    margin-bottom: 8px;
+}
+
+.modal-details-content strong {
+    color: var(--text-primary);
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -566,21 +804,210 @@ body {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+    .modal-top-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 
 <script>
 /* PAGE SWITCH WITH ACTIVE TAB STYLING */
 function showPage(id, btnElement) {
-    // Hide all sections
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-    // Remove active class from all buttons
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active-tab"));
-    
-    // Show selected section
     document.getElementById(id).classList.add("active");
-    // Highlight selected button
     if(btnElement) btnElement.classList.add("active-tab");
+}
+
+/* PROJECT MODAL LOGIC & DATA */
+const projectData = {
+    proj1: {
+        title: "Enterprise Data Architecture & Automation",
+        primaryTag: "Fabric Project",
+        domain: "Data Engineering",
+        shortDesc: "This portfolio highlights the end-to-end Microsoft Fabric implementation, covering data ingestion, transformation, governance, semantic modeling, and Power BI reporting.",
+        tools: ["Microsoft Fabric", "Power BI", "SQL", "Python", "Delta Lake"],
+        image: "extracted_images/image_3_2.jpg",
+        caption: "Architecture diagram showing the end-to-end data flow using Medallion Architecture in Microsoft Fabric.",
+        details: `
+            <p><strong>Goal:</strong> Implement a scalable, governed, and automated data architecture to replace unstable and slow Excel-based reporting.</p><br>
+            <p><strong>Pain Points Solved:</strong></p>
+            <ul>
+                <li>Unstable and slow refreshes when using large Excel files directly in Power BI.</li>
+                <li>High memory consumption and refresh failures.</li>
+                <li>Fragile schema—small changes break data refresh.</li>
+                <li>Limited scalability of Excel beyond ~100k–300k rows.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Improved data reliability, governance, and traceability.</li>
+                <li>Faster and stable dataset refresh cycles.</li>
+                <li>Reusable transformation logic reduces maintenance.</li>
+            </ul>
+        `
+    },
+    proj2: {
+        title: "Project Progress Dashboard",
+        primaryTag: "PowerBI Project",
+        domain: "Project Management",
+        shortDesc: "Led the development of a real‑time Project Progress Dashboard that unified schedule, cost, manpower, and earned‑value KPIs. The solution improved visibility and standardized reporting.",
+        tools: ["Power BI", "SQL", "DAX", "Power Query"],
+        image: "extracted_images/image_10_9.jpg",
+        caption: "A unified KPI-driven dashboard displaying progress to date, earned hours, plan vs actual, and performance factors.",
+        details: `
+            <p><strong>Goal:</strong> Create a single source of truth for project performance by integrating planning systems, cost controls, engineering deliverables, and construction feeds.</p><br>
+            <p><strong>Key Contributions:</strong></p>
+            <ul>
+                <li>Built a KPI‑driven dashboard displaying progress to date, earned hours, plan vs actual, and performance factors.</li>
+                <li>Automated weekly/monthly reporting with trend charts, variance analysis, and manpower curves.</li>
+                <li>Implemented validation rules and consistent business logic to ensure accurate KPI alignment.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Reduced manual reporting time by 50%, enabling teams to focus on insights instead of data preparation.</li>
+                <li>Strengthened decision‑making with clear plan vs actual insights and predictive trends.</li>
+            </ul>
+        `
+    },
+    proj3: {
+        title: "Contractor EVM & Status Report",
+        primaryTag: "PowerBI Project",
+        domain: "Project Controls",
+        shortDesc: "Developed a status report for the 20+ Contractors working on a project, providing insights into progress, resource utilization, and schedule performance.",
+        tools: ["Power BI", "SQL", "DAX", "Variance Analysis"],
+        image: "extracted_images/image_12_10.jpg",
+        caption: "Detailed progress tracking report at the building/unit area level, enabling visibility into contractor performance.",
+        details: `
+            <p><strong>Goal:</strong> Improve visibility into individual contractor performance and track earned value metrics accurately.</p><br>
+            <p><strong>Key Contributions:</strong></p>
+            <ul>
+                <li>Tracked 42.4% completion with SPI of 0.75.</li>
+                <li>Developed weekly plan vs actual progress tables.</li>
+                <li>Built variation and billing tables by department.</li>
+                <li>Created contractor-level earned value tables.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Enabled early intervention and improved contractor accountability.</li>
+                <li>Improved schedule clarity and supported scope management.</li>
+            </ul>
+        `
+    },
+    proj4: {
+        title: "Trend Analysis & Forecasting",
+        primaryTag: "Analytics Project",
+        domain: "Planning & Time-Series",
+        shortDesc: "Modeled incremental and cumulative hours over 4 years. Delivered forecasting, trend modeling, and time-series data structuring for strategic reporting.",
+        tools: ["Power BI", "SQL", "Time-Series Analysis", "Power Query"],
+        image: "extracted_images/image_14_11.jpg",
+        caption: "Time-series forecasting model displaying base scope vs. variation curves over a multi-year project lifecycle.",
+        details: `
+            <p><strong>Goal:</strong> Support long-term planning and resource forecasting by visualizing project trends over an extended timeline.</p><br>
+            <p><strong>Key Contributions:</strong></p>
+            <ul>
+                <li>Modeled incremental and cumulative hours over a 4-year span.</li>
+                <li>Structured complex time-series data for seamless strategic reporting.</li>
+                <li>Developed forecasting and trend models to predict project completion trajectories.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Improved timeline clarity by 40%.</li>
+                <li>Enabled proactive planning and resource allocation adjustments well in advance of critical path bottlenecks.</li>
+            </ul>
+        `
+    },
+    proj5: {
+        title: "Weekly Manpower Tracking",
+        primaryTag: "Workforce Analytics",
+        domain: "Workforce Management",
+        shortDesc: "Conducted workforce variance analysis and contractor-level breakdowns by comparing planned vs actual manpower on a weekly basis.",
+        tools: ["Power BI", "SQL", "DAX", "Workforce Analytics"],
+        image: "extracted_images/image_9_8.png",
+        caption: "Analytics charting tools used to track FTE utilization and highlight under/over-resourcing trends.",
+        details: `
+            <p><strong>Goal:</strong> Optimize labor planning by monitoring performance and ensuring data accuracy in contractor reporting.</p><br>
+            <p><strong>Key Contributions:</strong></p>
+            <ul>
+                <li>Compared planned vs actual manpower weekly across all disciplines.</li>
+                <li>Created contractor-level workforce tables for granular visibility.</li>
+                <li>Identified under/over-resourcing trends to assist the PMO.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Reduced reporting errors by 25%.</li>
+                <li>Significantly improved labor planning and field coordination.</li>
+            </ul>
+        `
+    },
+    proj6: {
+        title: "Schedule Deviation & Timeline Tracker",
+        primaryTag: "Scheduling Project",
+        domain: "Project Scheduling",
+        shortDesc: "Created comprehensive Gantt charts and deviation tracking tools to analyze schedule shifts across multiple areas.",
+        tools: ["MS Project", "Power BI", "SQL", "DAX"],
+        image: "extracted_images/image_6_3.png",
+        caption: "Automated trigger flows used to pull schedule updates into deviation dashboards.",
+        details: `
+            <p><strong>Goal:</strong> Improve task-level execution visibility and planning alignment by accurately tracking schedule deviations.</p><br>
+            <p><strong>Key Contributions:</strong></p>
+            <ul>
+                <li>Analyzed deviation rates across multiple construction areas.</li>
+                <li>Built deviation summary tables and average delay tracking charts.</li>
+                <li>Created automated Gantt charts for task timelines and durations used in weekly planning meetings.</li>
+            </ul>
+            <p><strong>Value Creation:</strong></p>
+            <ul>
+                <li>Reduced reporting errors by 25%.</li>
+                <li>Improved schedule visibility, ensuring early detection of critical path delays.</li>
+            </ul>
+        `
+    }
+};
+
+function openModal(projectId) {
+    const data = projectData[projectId];
+    if(!data) return;
+
+    // Populate Modal Header
+    document.getElementById('modal-header-title').innerText = data.title;
+    
+    // Populate Left Column
+    document.getElementById('modal-primary-tag').innerText = data.primaryTag;
+    document.getElementById('modal-title').innerText = data.title;
+    document.getElementById('modal-domain').innerHTML = `Domain/Function: <span>${data.domain}</span>`;
+    document.getElementById('modal-desc').innerText = data.shortDesc;
+    
+    // Populate Tools Tags
+    const toolsContainer = document.getElementById('modal-tools-list');
+    toolsContainer.innerHTML = '';
+    data.tools.forEach(tool => {
+        const span = document.createElement('span');
+        span.className = 'tool-badge';
+        span.innerText = tool;
+        toolsContainer.appendChild(span);
+    });
+
+    // Populate Right Column
+    document.getElementById('modal-image').src = data.image;
+    document.getElementById('modal-image-caption').innerText = data.caption;
+
+    // Populate Details Section
+    document.getElementById('modal-details-content').innerHTML = data.details;
+
+    // Show Modal
+    document.getElementById('project-modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('project-modal').style.display = 'none';
+}
+
+// Close modal when clicking outside the content box
+window.onclick = function(event) {
+    const modal = document.getElementById('project-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
 }
 </script>
 </head>
@@ -747,8 +1174,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Enterprise Data Architecture & Automation</h3>
                     <p class="project-domain">Domain/Function: <span>Data Engineering</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#3399ff"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                        <button class="btn-outline" onclick="openModal('proj1')">See My Work</button>
+                        <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -757,8 +1184,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Project Progress Dashboard</h3>
                     <p class="project-domain">Domain/Function: <span>Project Management</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#F2C811"><rect x="2" y="14" width="4" height="8"/><rect x="10" y="8" width="4" height="14"/><rect x="18" y="2" width="4" height="20"/></svg>
+                        <button class="btn-outline" onclick="openModal('proj2')">See My Work</button>
+                        <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -767,8 +1194,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Contractor EVM & Status Report</h3>
                     <p class="project-domain">Domain/Function: <span>Project Controls</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#F2C811"><rect x="2" y="14" width="4" height="8"/><rect x="10" y="8" width="4" height="14"/><rect x="18" y="2" width="4" height="20"/></svg>
+                        <button class="btn-outline" onclick="openModal('proj3')">See My Work</button>
+                        <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -777,8 +1204,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Trend Analysis & Forecasting</h3>
                     <p class="project-domain">Domain/Function: <span>Planning & Time-Series</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#00758F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                        <button class="btn-outline" onclick="openModal('proj4')">See My Work</button>
+                        <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -787,8 +1214,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Weekly Manpower Tracking</h3>
                     <p class="project-domain">Domain/Function: <span>Workforce Analytics</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#F2C811"><rect x="2" y="14" width="4" height="8"/><rect x="10" y="8" width="4" height="14"/><rect x="18" y="2" width="4" height="20"/></svg>
+                        <button class="btn-outline" onclick="openModal('proj5')">See My Work</button>
+                        <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -797,8 +1224,8 @@ function showPage(id, btnElement) {
                     <h3 class="project-title">Schedule Deviation & Timeline Tracker</h3>
                     <p class="project-domain">Domain/Function: <span>Scheduling</span></p>
                     <div class="project-footer">
-                        <a href="#" class="btn-outline">See My Work</a>
-                        <svg class="tool-icon" viewBox="0 0 24 24" fill="#F2C811"><rect x="2" y="14" width="4" height="8"/><rect x="10" y="8" width="4" height="14"/><rect x="18" y="2" width="4" height="20"/></svg>
+                        <button class="btn-outline" onclick="openModal('proj6')">See My Work</button>
+                        <img src="extracted_images/image_1_1.png" class="tool-icon" alt="Data Tool">
                     </div>
                 </div>
 
@@ -855,6 +1282,58 @@ function showPage(id, btnElement) {
         </div>
 
     </main>
+</div>
+
+<div id="project-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-header-title">Project Name</h2>
+            <button class="close-btn" onclick="closeModal()">✕</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="modal-top-grid">
+                <div class="modal-left">
+                    <span class="modal-primary-tag" id="modal-primary-tag">Tag</span>
+                    <h1 class="modal-title" id="modal-title">Project Title</h1>
+                    <p class="modal-domain" id="modal-domain">Domain/Function: <span>Domain</span></p>
+                    <p class="modal-desc" id="modal-desc">Short Description here.</p>
+                    
+                    <div class="modal-actions">
+                        <a href="https://linkedin.com/in/priyanshuupadhyay" target="_blank" class="action-btn linkedin">
+                            <div class="icon-circle">
+                                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </div>
+                            View Project<br>Engagement
+                        </a>
+                        <a href="https://github.com/priyanshu190920" target="_blank" class="action-btn github">
+                            <div class="icon-circle">
+                                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </div>
+                            View Project<br>on GitHub
+                        </a>
+                    </div>
+                    
+                    <h3 class="other-tools-title">Other Tools</h3>
+                    <div class="tools-list" id="modal-tools-list">
+                        </div>
+                </div>
+
+                <div class="modal-right">
+                    <div class="modal-image-container">
+                        <img id="modal-image" src="" alt="Project Image" class="modal-image">
+                        <p class="modal-image-caption" id="modal-image-caption">Caption</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-details-section">
+                <h3 class="modal-details-title">Project Details</h3>
+                <div class="modal-details-content" id="modal-details-content">
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
