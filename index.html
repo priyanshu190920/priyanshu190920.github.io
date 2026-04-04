@@ -140,7 +140,7 @@
             .skill-tags { display: flex; flex-wrap: wrap; gap: 12px; } 
             .skill-tag { background: #1e1e1f; border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; text-transform: uppercase; } 
             
-            /* TIMELINE FOR EXPERIENCE (NEW DESIGN) */
+            /* TIMELINE FOR EXPERIENCE (WITH NEW HOVER EFFECTS) */
             .timeline { position: relative; padding-left: 60px; margin-top: 40px; } 
             .timeline::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: var(--border-color); } 
             .entry { 
@@ -150,7 +150,13 @@
                 padding: 24px; 
                 margin-bottom: 32px; 
                 position: relative; 
+                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             } 
+            .entry:hover {
+                transform: translateY(-4px);
+                border-color: var(--accent);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            }
             .timeline-icon {
                 position: absolute;
                 left: -60px;
@@ -164,8 +170,17 @@
                 justify-content: center;
                 align-items: center;
                 z-index: 2;
+                transition: all 0.3s ease;
             }
-            .timeline-icon svg { width: 18px; height: 18px; stroke: var(--accent); }
+            .timeline-icon svg { width: 18px; height: 18px; stroke: var(--accent); transition: stroke 0.3s ease; }
+            .entry:hover .timeline-icon {
+                background: var(--accent);
+                border-color: var(--accent);
+                box-shadow: 0 0 15px rgba(255,219,112,0.3);
+            }
+            .entry:hover .timeline-icon svg {
+                stroke: #000;
+            }
             
             .entry-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
             .entry-title { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
@@ -195,7 +210,7 @@
             .contact-card-value a { color: var(--text-primary); text-decoration: none; } 
             .contact-card-value a:hover { text-decoration: underline; color: var(--accent); } 
             
-            /* PROJECTS GRID (NEW DESIGN) */
+            /* PROJECTS GRID (WITH ZOOM EFFECT & ICONS) */
             .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px; } 
             .project-box { 
                 background: var(--card-bg); 
@@ -207,7 +222,25 @@
                 transition: transform 0.3s, border-color 0.3s; 
             } 
             .project-box:hover { transform: translateY(-4px); border-color: var(--accent); } 
-            .project-thumb { width: 100%; aspect-ratio: 16/9; border-radius: 10px; object-fit: cover; margin-bottom: 20px; background: #1a1a1a; border: 1px solid var(--border-color); } 
+            
+            .project-img-wrapper {
+                width: 100%; 
+                aspect-ratio: 16/9; 
+                border-radius: 10px; 
+                overflow: hidden; 
+                margin-bottom: 20px; 
+                border: 1px solid var(--border-color);
+                background: #1a1a1a; 
+            }
+            .project-thumb { 
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+                transition: transform 0.5s ease;
+            } 
+            .project-box:hover .project-thumb {
+                transform: scale(1.08);
+            }
             
             .project-domain { 
                 display: flex;
@@ -233,7 +266,12 @@
                 -webkit-box-orient: vertical; 
                 overflow: hidden;
             }
-            .project-footer { display: flex; justify-content: flex-start; align-items: center; margin-top: auto; } 
+            .project-footer { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                margin-top: auto; 
+            } 
             .btn-link { 
                 display: flex;
                 align-items: center;
@@ -251,6 +289,16 @@
             .btn-link:hover { opacity: 0.8; } 
             .btn-link svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; transition: transform 0.3s; }
             .btn-link:hover svg { transform: translateX(4px); }
+            .tool-icon {
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+            .project-box:hover .tool-icon {
+                opacity: 1;
+            }
             
             /* MODAL (POPUP) CSS */
             #project-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px); } 
@@ -687,7 +735,9 @@
                     <h2>My Projects</h2> 
                     <div class="projects-grid"> 
                         <div class="project-box"> 
-                            <img src="extracted_images/project-1.png" alt="Fabric Architecture" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-1.png" alt="Fabric Architecture" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm10-2.5v1c0 .4-.3.8-.7.9l-1.9.3c-.2.7-.4 1.4-.8 2l1.3 1.5c.3.3.3.8 0 1.1l-.7.7c-.3.3-.8.3-1.1 0l-1.5-1.3c-.6.4-1.3.6-2 .8l-.3 1.9c-.1.4-.5.7-.9.7h-1c-.4 0-.8-.3-.9-.7l-.3-1.9c-.7-.2-1.4-.4-2-.8l-1.5 1.3c-.3.3-.8.3-1.1 0l-.7-.7c-.3-.3-.3-.8 0-1.1l1.3-1.5c-.4-.6-.6-1.3-.8-2l-1.9-.3c-.4-.1-.7-.5-.7-.9v-1c0-.4.3-.8.7-.9l1.9-.3c.2-.7.4-1.4.8-2L3 6.6c-.3-.3-.3-.8 0-1.1l.7-.7c.3-.3.8-.3 1.1 0l1.5 1.3c.6-.4 1.3-.6 2-.8l.3-1.9c.1-.4.5-.7.9-.7h1c.4 0 .8.3.9.7l.3 1.9c.7.2 1.4.4 2 .8l1.5-1.3c.3-.3.8-.3 1.1 0l.7.7c.3.3.3.8 0 1.1l-1.3 1.5c.4.6.6 1.3.8 2l1.9.3c.4.1.7.5.7.9z"/></svg>
                                 Data Engineering
@@ -696,10 +746,13 @@
                             <p class="project-short-desc">Built a single source of truth for project performance by integrating planning systems, cost controls, engineering deliverables, and construction feeds.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj1')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                         <div class="project-box"> 
-                            <img src="extracted_images/project-2.png" alt="Project Progress Dashboard" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-2.png" alt="Project Progress Dashboard" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                                 Project Management
@@ -708,10 +761,13 @@
                             <p class="project-short-desc">Developed a real-time project progress dashboard for tracking construction milestones, engineering deliverables, and procurement status.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj2')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                         <div class="project-box"> 
-                            <img src="extracted_images/project-3.png" alt="Contractor EVM & Status Report" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-3.png" alt="Contractor EVM & Status Report" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
                                 Project Controls
@@ -720,10 +776,13 @@
                             <p class="project-short-desc">Developed a status report for 20+ Contractors working on a project, providing insights into progress, resource utilization, and schedule performance.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj3')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                         <div class="project-box"> 
-                            <img src="extracted_images/project-4.png" alt="Trend Analysis & Forecasting" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-4.png" alt="Trend Analysis & Forecasting" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
                                 Planning & Time-Series
@@ -732,10 +791,13 @@
                             <p class="project-short-desc">Supported long-term planning and resource forecasting by visualizing project trends over an extended timeline.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj4')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                         <div class="project-box"> 
-                            <img src="extracted_images/project-5.png" alt="Weekly Manpower Tracking" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-5.png" alt="Weekly Manpower Tracking" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
                                 Workforce Analytics
@@ -744,10 +806,13 @@
                             <p class="project-short-desc">Built a workforce planning dashboard tracking manpower allocation, utilization rates, and forecasted headcount across project phases.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj5')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_0_0.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                         <div class="project-box"> 
-                            <img src="extracted_images/project-6.png" alt="Schedule Deviation & Timeline Tracker" class="project-thumb"> 
+                            <div class="project-img-wrapper">
+                                <img src="extracted_images/project-6.png" alt="Schedule Deviation & Timeline Tracker" class="project-thumb"> 
+                            </div>
                             <div class="project-domain">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                                 Scheduling
@@ -756,6 +821,7 @@
                             <p class="project-short-desc">Automated trigger flows used to pull schedule updates into deviation dashboards.</p>
                             <div class="project-footer"> 
                                 <button class="btn-link" onclick="openModal('proj6')">See My Work <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>                                 
+                                <img src="extracted_images/image_1_1.png" class="tool-icon" alt="Data Tool"> 
                             </div>                             
                         </div>                         
                     </div>                     
