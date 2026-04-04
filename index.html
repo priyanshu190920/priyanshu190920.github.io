@@ -207,9 +207,44 @@
                 margin-top: 35px;
             }
             .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } 
-            .contact-card { background: #2a2a2c; border: 1px solid var(--border-color); border-radius: 14px; padding: 25px 20px; display: flex; align-items: center; gap: 15px; } 
-            .contact-card .icon-box-large { width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; } 
-            .contact-card .icon-box-large svg { width: 28px; height: 28px; fill: var(--accent); } 
+            .contact-card { 
+                background: #2a2a2c; 
+                border: 1px solid var(--border-color); 
+                border-radius: 14px; 
+                padding: 25px 20px; 
+                display: flex; 
+                align-items: center; 
+                gap: 15px; 
+                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            } 
+            .contact-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--accent);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            }
+            .contact-card .icon-box-large { 
+                width: 50px; 
+                height: 50px; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                flex-shrink: 0; 
+                border-radius: 12px;
+                background: #1e1e1f;
+                transition: all 0.3s ease;
+            } 
+            .contact-card .icon-box-large svg { width: 28px; height: 28px; fill: var(--accent); transition: fill 0.3s ease; } 
+            
+            /* Hover interactions for icon within contact card */
+            .contact-card:hover .icon-box-large {
+                background: var(--accent);
+                border-color: var(--accent);
+                box-shadow: 0 0 15px rgba(255,219,112,0.3);
+            }
+            .contact-card:hover .icon-box-large svg {
+                fill: #000;
+            }
+            
             .contact-card-info { display: flex; flex-direction: column; } 
             .contact-card-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; } 
             .contact-card-value { font-size: 1rem; color: var(--text-primary); text-decoration: none; overflow-wrap: break-word; word-break: break-word; } 
@@ -395,7 +430,7 @@
             .modal-tag-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; } 
             .modal-primary-tag { background: var(--tag-blue); color: var(--tag-blue-text); padding: 6px 14px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; display: inline-block; } 
             .modal-top-icon { width: 32px; height: 32px; } 
-            .modal-top-icon svg { width: 100%; height: 100%; } 
+            .modal-top-icon img { width: 100%; height: 100%; object-fit: contain; } 
             .modal-title { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; } 
             .modal-domain { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; } 
             .modal-domain span { color: #00d26a; font-weight: 600; } 
@@ -440,11 +475,6 @@
                 if(btnElement) btnElement.classList.add("active-tab");
             }
 
-            /* SVG CONSTANTS */
-            const svgFabric = '<svg viewBox="0 0 24 24" fill="#3399ff"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>';
-            const svgPowerBI = '<svg viewBox="0 0 24 24" fill="#F2C811"><rect x="2" y="14" width="4" height="8"/><rect x="10" y="8" width="4" height="14"/><rect x="18" y="2" width="4" height="20"/></svg>';
-            const svgSQL = '<svg viewBox="0 0 24 24" fill="#00758F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>';
-
             /* PROJECT MODAL LOGIC & DATA */
             const projectData = {
                 proj1: {
@@ -455,7 +485,7 @@
                     tools: ["Microsoft Fabric", "Power BI", "SQL", "Python", "Delta Lake"],
                     image: "extracted_images/project-1.png",
                     caption: "Architecture diagram showing the end-to-end data flow using Medallion Architecture in Microsoft Fabric.",
-                    topSvg: svgFabric,
+                    topIcon: "extracted_images/image_0_0.png",
                     details: `
                         <p><strong>Goal:</strong> Implement a scalable, governed, and automated data architecture to replace unstable and slow Excel-based reporting.</p><br>
                         <p><strong>Pain Points Solved:</strong></p>
@@ -481,7 +511,7 @@
                     tools: ["Power BI", "SQL", "DAX", "Power Query"],
                     image: "extracted_images/project-2.png",
                     caption: "A unified KPI-driven dashboard displaying progress to date, earned hours, plan vs actual, and performance factors.",
-                    topSvg: svgPowerBI,
+                    topIcon: "extracted_images/image_0_0.png",
                     details: `
                         <p><strong>Goal:</strong> Create a single source of truth for project performance by integrating planning systems, cost controls, engineering deliverables, and construction feeds.</p><br>
                         <p><strong>Key Contributions:</strong></p>
@@ -505,7 +535,7 @@
                     tools: ["Power BI", "SQL", "DAX", "Variance Analysis"],
                     image: "extracted_images/project-3.png",
                     caption: "Detailed progress tracking report at the building/unit area level, enabling visibility into contractor performance.",
-                    topSvg: svgPowerBI,
+                    topIcon: "extracted_images/image_0_0.png",
                     details: `
                         <p><strong>Goal:</strong> Improve visibility into individual contractor performance and track earned value metrics accurately.</p><br>
                         <p><strong>Key Contributions:</strong></p>
@@ -530,7 +560,7 @@
                     tools: ["Power BI", "SQL", "Time-Series Analysis", "Power Query"],
                     image: "extracted_images/project-4.png",
                     caption: "Time-series forecasting model displaying base scope vs. variation curves over a multi-year project lifecycle.",
-                    topSvg: svgSQL,
+                    topIcon: "extracted_images/image_0_0.png",
                     details: `
                         <p><strong>Goal:</strong> Support long-term planning and resource forecasting by visualizing project trends over an extended timeline.</p><br>
                         <p><strong>Key Contributions:</strong></p>
@@ -554,7 +584,7 @@
                     tools: ["Power BI", "SQL", "DAX", "Workforce Analytics"],
                     image: "extracted_images/project-5.png",
                     caption: "Analytics charting tools used to track FTE utilization and highlight under/over-resourcing trends.",
-                    topSvg: svgPowerBI,
+                    topIcon: "extracted_images/image_0_0.png",
                     details: `
                         <p><strong>Goal:</strong> Optimize labor planning by monitoring performance and ensuring data accuracy in contractor reporting.</p><br>
                         <p><strong>Key Contributions:</strong></p>
@@ -578,7 +608,7 @@
                     tools: ["MS Project", "Power BI", "SQL", "DAX"],
                     image: "extracted_images/project-6.png",
                     caption: "Automated trigger flows used to pull schedule updates into deviation dashboards.",
-                    topSvg: svgPowerBI,
+                    topIcon: "extracted_images/image_1_1.png",
                     details: `
                         <p><strong>Goal:</strong> Improve task-level execution visibility and planning alignment by accurately tracking schedule deviations.</p><br>
                         <p><strong>Key Contributions:</strong></p>
@@ -602,7 +632,10 @@
 
                 document.getElementById('modal-header-title').innerText = data.title;
                 document.getElementById('modal-primary-tag').innerText = data.primaryTag;
-                document.getElementById('modal-top-icon').innerHTML = data.topSvg;
+                
+                // Set the modal icon image based on project data
+                document.getElementById('modal-top-icon').innerHTML = `<img src="${data.topIcon}" alt="Tool Icon">`;
+                
                 document.getElementById('modal-title').innerText = data.title;
                 document.getElementById('modal-domain').innerHTML = `Domain/Function: <span>${data.domain}</span>`;
                 document.getElementById('modal-desc').innerText = data.shortDesc;
