@@ -87,56 +87,54 @@
             .social-links svg { width: 20px; height: 20px; fill: currentColor; } 
             
             /* SIDEBAR DOWNLOAD BUTTONS */
-.download-buttons {
-    width: 1*0%;
-    display: flex;
-    flex-di*ection: column;
-    gap: 12px;
-}
-
-*download-btn {
-    width: 100%;
-  * min-height: 50px;
-    display: fl*x;
-    justify-content: center;
-  * align-items: center;
-    gap: 10p*;
-
-    background: var(--accent);
-*   color: #000000;
-
-    padding: 1*px 18px;
-    border: 1px solid tra*sparent;
-    border-radius: 12px;
-*    font-family: inherit;
-    font*size: 0.95rem;
-    font-weight: 60*;
-    text-align: center;
-    text*decoration: none;
-
-    cursor: poi*ter;
-    transition:
-        trans*orm 0.3s ease,
-        opacity 0.3* ease,
-        box-shadow 0.3s eas*;
-}
-
-.download-btn:hover {
-    opa*ity: 0.92;
-    transform: translat*Y(-2px);
-    box-shadow: 0 8px 20p* rgba(255, 219, 112, 0.18);
-}
-
-.do*nload-btn:focus-visible {
-    outl*ne: 3px solid rgba(255, 219, 112, *.4);
-    outline-offset: 3px;
-}
-
-.*ownload-btn svg {
-    width: 18px;*    height: 18px;
-    flex-shrink:*0;
-    fill: #000000;
-}
+            .download-buttons {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .download-btn {
+                width: 100%;
+                min-height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                background: var(--accent);
+                color: #000000;
+                padding: 14px 18px;
+                border: 1px solid transparent;
+                border-radius: 12px;
+                font-family: inherit;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                transition:
+                    transform 0.3s ease,
+                    opacity 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
+            
+            .download-btn:hover {
+                opacity: 0.92;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(255, 219, 112, 0.18);
+            }
+            
+            .download-btn:focus-visible {
+                outline: 3px solid rgba(255, 219, 112, 0.4);
+                outline-offset: 3px;
+            }
+            
+            .download-btn svg {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+                fill: #000000;
+            }
             
             /* MAIN CONTENT */
             #main-content { flex-grow: 1; position: relative; padding-top: 80px; } 
@@ -619,30 +617,30 @@
                 </div>                 
                 <div class="download-buttons">
 
-    <a href="Priyanshu_CV.pdf"
-       class="download-btn"
-       download="Priyanshu_Upadhyay_CV.pdf">
-
-        <span>Download CV</span>
-
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-        </svg>
-    </a>
-
-    <a href="Priyanshu_Portfolio.pdf"
-       class="download-btn"
-       download="Priyanshu_Upadhyay_Portfolio.pdf">
-
-        <span>Download Portfolio</span>
-
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-        </svg>
-    </a>
-
-</div>
-</aside>
+                    <a href="Priyanshu_CV.pdf"
+                       class="download-btn"
+                       download="Priyanshu_Upadhyay_CV.pdf">
+                
+                        <span>Download CV</span>
+                
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                    </a>
+                
+                    <a href="Priyanshu_Portfolio.pdf"
+                       class="download-btn"
+                       download="Priyanshu_Upadhyay_Portfolio.pdf">
+                
+                        <span>Download Portfolio</span>
+                
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                    </a>
+                
+                </div>
+                </aside>
             
             <main id="main-content" class="card"> 
                 <nav class="navbar"> 
